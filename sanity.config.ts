@@ -8,8 +8,8 @@ export default defineConfig({
   name: 'default',
   title: 'zevenstone-cms',
 
-  projectId: 'h79epwt4',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
 
   plugins: [structureTool(), visionTool(), codeInput()],
 
