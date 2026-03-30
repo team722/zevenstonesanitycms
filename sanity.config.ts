@@ -1,9 +1,10 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
-import {codeInput} from '@sanity/code-input'
-import {SEOPane} from 'sanity-plugin-seo-pane'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { schemaTypes } from './schemaTypes'
+import { codeInput } from '@sanity/code-input'
+import { SEOPane } from 'sanity-plugin-seo-pane'
+import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
   name: 'default',
@@ -13,8 +14,20 @@ export default defineConfig({
   dataset: process.env.SANITY_STUDIO_DATASET!,
 
   plugins: [
+    // --- Presentation Tool: Live split-screen preview ---
+    // Left: Sanity data form  |  Right: Live React website preview
+    presentationTool({
+      previewUrl: {
+        previewMode: {
+          enable: '/api/draft',
+        },
+        // Points to the local React dev server
+        origin: 'http://localhost:3000',
+      },
+    }),
+
     structureTool({
-      defaultDocumentNode: (S, {schemaType}) => {
+      defaultDocumentNode: (S, { schemaType }) => {
         if (['blogPost', 'caseStudy', 'landingPage'].includes(schemaType)) {
           return S.document().views([
             S.view.form(),
@@ -32,11 +45,10 @@ export default defineConfig({
       },
     }),
     visionTool(),
-    codeInput()
+    codeInput(),
   ],
 
   schema: {
     types: schemaTypes,
   },
 })
-
