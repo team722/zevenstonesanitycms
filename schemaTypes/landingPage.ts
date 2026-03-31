@@ -86,14 +86,7 @@ export default defineType({
         { type: 'object', name: 'statsSection', title: 'Stats Section', fields: statsBlock.fields },
       ],
     }),
-    defineField({
-      name: 'seo', title: 'SEO Settings', type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-        defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image' }),
-      ],
-    }),
+    defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'slug.current' },

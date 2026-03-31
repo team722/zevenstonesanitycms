@@ -15,13 +15,7 @@ export default defineType({
     defineField({ name: 'solution', title: 'Our Solution', type: 'text', rows: 3 }),
     defineField({ name: 'impact', title: 'The Impact / Result', type: 'text', rows: 2 }),
     defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }] }),
-    defineField({
-      name: 'seo', title: 'SEO Settings', type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-      ],
-    }),
+    defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),
   ],
   preview: {
     select: { title: 'client', subtitle: 'headline', media: 'image' },

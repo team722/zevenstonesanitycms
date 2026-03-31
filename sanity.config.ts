@@ -3,7 +3,7 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { codeInput } from '@sanity/code-input'
-import { SEOPane } from 'sanity-plugin-seo-pane'
+import seofields from 'sanity-plugin-seofields'
 import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
@@ -26,26 +26,10 @@ export default defineConfig({
       },
     }),
 
-    structureTool({
-      defaultDocumentNode: (S, { schemaType }) => {
-        if (['blogPost', 'caseStudy', 'landingPage'].includes(schemaType)) {
-          return S.document().views([
-            S.view.form(),
-            S.view
-              .component(SEOPane)
-              .options({
-                keywords: 'seo.metaTitle',
-                synonyms: 'seo.metaTitle',
-                url: (doc: any) => `http://localhost:5173/${doc?.slug?.current || ''}`,
-              })
-              .title('SEO'),
-          ])
-        }
-        return S.document()
-      },
-    }),
+    structureTool(),
     visionTool(),
     codeInput(),
+    seofields(),
   ],
 
   schema: {

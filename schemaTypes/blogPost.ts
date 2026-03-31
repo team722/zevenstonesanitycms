@@ -33,14 +33,7 @@ export default defineType({
         { type: 'code' },
       ],
     }),
-    defineField({
-      name: 'seo', title: 'SEO Settings', type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-        defineField({ name: 'ogImage', title: 'OG Share Image', type: 'image' }),
-      ],
-    }),
+    defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),
     defineField({ name: 'featured', title: 'Featured Post?', type: 'boolean', initialValue: false }),
   ],
   preview: {

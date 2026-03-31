@@ -50,13 +50,6 @@ export default defineType({
       name: 'moreServicesTags', title: 'More Services Tags', type: 'array',
       of: [{ type: 'string' }],
     }),
-    defineField({
-      name: 'seo', title: 'SEO Settings', type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-        defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', options: { hotspot: true } }),
-      ],
-    }),
+    defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),
   ],
 });

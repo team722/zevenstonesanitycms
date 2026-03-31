@@ -11,7 +11,12 @@ export default defineCliConfig({
       ...config,
       plugins: [
         ...(config.plugins || []),
-        nodePolyfills(),
+        nodePolyfills({
+          exclude: ['module'],
+          globals: {
+            process: 'build',
+          },
+        }),
       ],
     }
   },
