@@ -5,6 +5,30 @@ export default defineType({
   title: 'Site Settings',
   type: 'document',
   fields: [
+    // Global Header
+    defineField({ name: 'logo', title: 'Site Logo', type: 'image' }),
+    defineField({
+      name: 'navigation', title: 'Header Navigation', type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'text', title: 'Link Text', type: 'string' }),
+          defineField({ name: 'url', title: 'URL', type: 'string' }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'headerCta', title: 'Header CTA Button', type: 'object',
+      fields: [
+         defineField({ name: 'text', title: 'Button Text', type: 'string' }),
+         defineField({ name: 'url', title: 'Button URL', type: 'string' }),
+      ],
+    }),
+    // Global Footer
+    defineField({ name: 'footerDescription', title: 'Footer Description', type: 'text', rows: 3 }),
+    defineField({ name: 'copyrightText', title: 'Copyright Text', type: 'string' }),
+    
+    // Existing Settings
     defineField({
       name: 'partnerLogos', title: 'Partner / Client Logos', type: 'array',
       of: [{

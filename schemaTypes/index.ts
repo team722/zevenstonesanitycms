@@ -14,6 +14,12 @@ import servicesPage from './servicesPage';
 import portfolioPage from './portfolioPage';
 import successStoriesPage from './successStoriesPage';
 import blogPage from './blogPage';
+import contactPage from './contactPage';
+
+// Objects
+import heroSection from './heroSection';
+import ctaSection from './ctaSection';
+import sectionHeading from './sectionHeading';
 
 export const schemaTypes = [
   blogPost,
@@ -32,4 +38,10 @@ export const schemaTypes = [
   portfolioPage,
   successStoriesPage,
   blogPage,
+  contactPage,
+  
+  // Objects
+  heroSection,
+  ctaSection,
+  sectionHeading,
 ];
