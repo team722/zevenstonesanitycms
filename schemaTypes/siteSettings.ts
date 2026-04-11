@@ -26,6 +26,36 @@ export default defineType({
     }),
     // Global Footer
     defineField({ name: 'footerDescription', title: 'Footer Description', type: 'text', rows: 3 }),
+    defineField({
+      name: 'footerNavigation', title: 'Footer Quick Links', type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'text', title: 'Link Text', type: 'string' }),
+          defineField({ name: 'url', title: 'URL', type: 'string' }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'footerServices', title: 'Footer Expertise Links', type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'text', title: 'Service Name', type: 'string' }),
+          defineField({ name: 'url', title: 'URL', type: 'string' }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'legalLinks', title: 'Legal Links', type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'text', title: 'Link Text', type: 'string' }),
+          defineField({ name: 'url', title: 'URL', type: 'string' }),
+        ],
+      }],
+    }),
     defineField({ name: 'copyrightText', title: 'Copyright Text', type: 'string' }),
     
     // Existing Settings
