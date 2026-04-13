@@ -8,8 +8,8 @@ export default defineType({
     defineField({ name: 'client', title: 'Client Name', type: 'string', validation: (r) => r.required() }),
     defineField({ name: 'headline', title: 'Project Headline', type: 'string' }),
     defineField({
-      name: 'category', title: 'Category', type: 'string',
-      options: { list: ['Digital Marketing', 'Web / Apps', 'Video Production', 'AI'] },
+      name: 'category', title: 'Category', type: 'reference',
+      to: [{ type: 'portfolioCategory' }],
     }),
     defineField({
       name: 'image', title: 'Project Image', type: 'image',
