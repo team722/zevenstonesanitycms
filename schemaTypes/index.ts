@@ -1,4 +1,5 @@
 import blogPost from './blogPost';
+import blogCategory from './blogCategory';
 import teamMember from './teamMember';
 import testimonial from './testimonial';
 import portfolioProject from './portfolioProject';
@@ -23,6 +24,7 @@ import sectionHeading from './sectionHeading';
 
 export const schemaTypes = [
   blogPost,
+  blogCategory,
   teamMember,
   testimonial,
   portfolioProject,

@@ -15,8 +15,8 @@ export default defineType({
       name: 'author', title: 'Author', type: 'reference', to: [{ type: 'teamMember' }]
     }),
     defineField({
-      name: 'category', title: 'Category', type: 'string',
-      options: { list: ['Strategy', 'Design', 'Growth', 'Marketing', 'Technology', 'AI'] },
+      name: 'category', title: 'Category', type: 'reference',
+      to: [{ type: 'blogCategory' }],
     }),
     defineField({ name: 'publishedAt', title: 'Published Date', type: 'datetime' }),
     defineField({ name: 'excerpt', title: 'Excerpt / Summary', type: 'text', rows: 3 }),
@@ -37,6 +37,6 @@ export default defineType({
     defineField({ name: 'featured', title: 'Featured Post?', type: 'boolean', initialValue: false }),
   ],
   preview: {
-    select: { title: 'title', media: 'mainImage', subtitle: 'category' },
+    select: { title: 'title', media: 'mainImage', subtitle: 'category.label' },
   },
 });
