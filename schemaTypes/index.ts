@@ -1,6 +1,7 @@
 import blogPost from './blogPost';
 import blogCategory from './blogCategory';
 import teamMember from './teamMember';
+import founderBio from './founderBio';
 import testimonial from './testimonial';
 import portfolioProject from './portfolioProject';
 import portfolioCategory from './portfolioCategory';
@@ -26,6 +27,7 @@ export const schemaTypes = [
   blogPost,
   blogCategory,
   teamMember,
+  founderBio,
   testimonial,
   portfolioProject,
   portfolioCategory,

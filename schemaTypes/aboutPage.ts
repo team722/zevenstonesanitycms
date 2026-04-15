@@ -16,6 +16,7 @@ export default defineType({
     defineField({ name: 'missionSection', title: 'Mission Section', type: 'sectionHeading' }),
     defineField({ name: 'howWeWorkHeading', title: 'How We Work Heading', type: 'sectionHeading' }),
     defineField({ name: 'coreValuesHeading', title: 'Core Values Heading', type: 'sectionHeading' }),
+    defineField({ name: 'foundersBioHeading', title: 'Founders Bio Heading', type: 'sectionHeading' }),
     defineField({ name: 'teamHeading', title: 'Team Section Heading', type: 'sectionHeading' }),
     defineField({ name: 'testimonialsHeading', title: 'Testimonials Heading', type: 'sectionHeading' }),
     defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),

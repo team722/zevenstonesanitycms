@@ -72,14 +72,17 @@ export default defineType({
       }],
     }),
     defineField({
-      name: 'founderMessage', title: 'Founder Message Section', type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'content', title: 'Message Content', type: 'text', rows: 5 }),
-        defineField({ name: 'author', title: 'Author Name', type: 'string' }),
-        defineField({ name: 'role', title: 'Author Role', type: 'string' }),
-        defineField({ name: 'photo', title: 'Author Photo', type: 'image', options: { hotspot: true } }),
-      ],
+      name: 'founderMessages', title: 'Founder Messages Section', type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: 'Section Title', type: 'string' }),
+          defineField({ name: 'content', title: 'Message Content', type: 'text', rows: 5 }),
+          defineField({ name: 'author', title: 'Author Name', type: 'string' }),
+          defineField({ name: 'role', title: 'Author Role', type: 'string' }),
+          defineField({ name: 'photo', title: 'Author Photo', type: 'image', options: { hotspot: true } }),
+        ],
+      }],
     }),
     defineField({
       name: 'moreServicesTags', title: 'More Services Tags', type: 'array',
