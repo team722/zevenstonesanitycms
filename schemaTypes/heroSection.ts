@@ -16,6 +16,11 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'label',
+      title: 'Label',
+      type: 'string',
+    }),
+    defineField({
       name: 'backgroundImage',
       title: 'Background Image',
       type: 'image',
