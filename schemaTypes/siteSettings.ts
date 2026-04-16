@@ -20,8 +20,8 @@ export default defineType({
     defineField({
       name: 'headerCta', title: 'Header CTA Button', type: 'object',
       fields: [
-         defineField({ name: 'text', title: 'Button Text', type: 'string' }),
-         defineField({ name: 'url', title: 'Button URL', type: 'string' }),
+        defineField({ name: 'text', title: 'Button Text', type: 'string' }),
+        defineField({ name: 'url', title: 'Button URL', type: 'string' }),
       ],
     }),
     // Global Footer
@@ -57,7 +57,7 @@ export default defineType({
       }],
     }),
     defineField({ name: 'copyrightText', title: 'Copyright Text', type: 'string' }),
-    
+
     // Existing Settings
     defineField({
       name: 'partnerLogos', title: 'Partner / Client Logos', type: 'array',
@@ -84,6 +84,6 @@ export default defineType({
     defineField({ name: 'address', title: 'Office Address', type: 'text', rows: 2 }),
     defineField({ name: 'linkedIn', title: 'LinkedIn URL', type: 'url' }),
     defineField({ name: 'instagram', title: 'Instagram URL', type: 'url' }),
-    defineField({ name: 'twitter', title: 'Twitter / X URL', type: 'url' }),
+    defineField({ name: 'facebook', title: 'Facebook URL', type: 'url' }),
   ],
 });
