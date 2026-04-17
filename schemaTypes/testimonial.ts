@@ -5,7 +5,7 @@ export default defineType({
   title: 'Testimonial',
   type: 'document',
   fields: [
-    defineField({ name: 'quote', title: 'Quote', type: 'text', rows: 4, validation: (r) => r.required() }),
+    defineField({ name: 'content', title: 'Testimonial Content', type: 'text', rows: 8, validation: (r) => r.required() }),
     defineField({ name: 'author', title: 'Author Name', type: 'string' }),
     defineField({ name: 'role', title: 'Author Role / Title', type: 'string' }),
     defineField({ name: 'company', title: 'Company Name', type: 'string' }),
