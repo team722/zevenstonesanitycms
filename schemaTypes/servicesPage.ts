@@ -24,6 +24,27 @@ export default defineType({
         ],
       }],
     }),
+    defineField({
+      name: 'pillars',
+      title: 'Three Pillars',
+      description: 'The three core service pillars displayed on the Services page.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'pillarNumber', title: 'Pillar Label (e.g. Pillar 1 — Create)', type: 'string' }),
+          defineField({ name: 'title', title: 'Title', type: 'string' }),
+          defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
+          defineField({ 
+            name: 'capabilities', 
+            title: 'Capabilities', 
+            type: 'array', 
+            of: [{ type: 'string' }] 
+          }),
+        ],
+      }],
+      validation: (Rule) => Rule.max(3),
+    }),
     defineField({ name: 'seo', title: 'SEO Settings', type: 'seoFields' }),
   ],
 });

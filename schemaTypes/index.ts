@@ -1,5 +1,6 @@
 import blogPost from './blogPost';
 import blogCategory from './blogCategory';
+import author from './author';
 import teamMember from './teamMember';
 import founderBio from './founderBio';
 import testimonial from './testimonial';
@@ -26,6 +27,7 @@ import sectionHeading from './sectionHeading';
 export const schemaTypes = [
   blogPost,
   blogCategory,
+  author,
   teamMember,
   founderBio,
   testimonial,
