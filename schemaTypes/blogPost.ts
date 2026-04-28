@@ -114,6 +114,66 @@ export default defineType({
             ],
           },
         },
+        // ── Comparison Table ────────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'comparisonTable',
+          title: 'Comparison Table',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Table Title',
+              type: 'string',
+            }),
+            defineField({
+              name: 'headers',
+              title: 'Column Headers',
+              type: 'array',
+              of: [{ type: 'string' }],
+              description: 'Labels for the top row (e.g., Feature, Plan A, Plan B)',
+              validation: (Rule) => Rule.min(2),
+            }),
+            defineField({
+              name: 'rows',
+              title: 'Table Rows',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({ name: 'feature', title: 'Feature/Row Name', type: 'string' }),
+                    defineField({
+                      name: 'values',
+                      title: 'Values',
+                      type: 'array',
+                      of: [{ type: 'string' }],
+                      description: 'The values corresponding to each header column (after the feature name).',
+                    }),
+                    defineField({
+                      name: 'isCheckmark',
+                      title: 'Treat as Checkmarks?',
+                      type: 'array',
+                      of: [{ type: 'boolean' }],
+                      description: 'If true, "yes/no/true/false" text will be replaced with icons.',
+                    }),
+                  ],
+                  preview: {
+                    select: { title: 'feature' },
+                  },
+                },
+              ],
+            }),
+          ],
+          preview: {
+            select: { title: 'title', rows: 'rows' },
+            prepare({ title, rows }) {
+              return {
+                title: `📊 Comparison Table: ${title || 'Untitled'}`,
+                subtitle: `${rows?.length || 0} rows`,
+              };
+            },
+          },
+        },
 
         // Inline image with alt + caption
         {
@@ -310,67 +370,6 @@ export default defineType({
               return {
                 title: `⚖️ ${title || 'Pros & Cons'}`,
                 subtitle: `${pros?.length || 0} pros · ${cons?.length || 0} cons`,
-              };
-            },
-          },
-        },
-
-        // ── Comparison Table ────────────────────────────────────────────────
-        {
-          type: 'object',
-          name: 'comparisonTable',
-          title: 'Comparison Table',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Table Title',
-              type: 'string',
-            }),
-            defineField({
-              name: 'headers',
-              title: 'Column Headers',
-              type: 'array',
-              of: [{ type: 'string' }],
-              description: 'Labels for the top row (e.g., Feature, Plan A, Plan B)',
-              validation: (Rule) => Rule.min(2),
-            }),
-            defineField({
-              name: 'rows',
-              title: 'Table Rows',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  fields: [
-                    defineField({ name: 'feature', title: 'Feature/Row Name', type: 'string' }),
-                    defineField({
-                      name: 'values',
-                      title: 'Values',
-                      type: 'array',
-                      of: [{ type: 'string' }],
-                      description: 'The values corresponding to each header column (after the feature name).',
-                    }),
-                    defineField({
-                      name: 'isCheckmark',
-                      title: 'Treat as Checkmarks?',
-                      type: 'array',
-                      of: [{ type: 'boolean' }],
-                      description: 'If true, "yes/no/true/false" text will be replaced with icons.',
-                    }),
-                  ],
-                  preview: {
-                    select: { title: 'feature' },
-                  },
-                },
-              ],
-            }),
-          ],
-          preview: {
-            select: { title: 'title', rows: 'rows' },
-            prepare({ title, rows }) {
-              return {
-                title: `📊 Comparison Table: ${title || 'Untitled'}`,
-                subtitle: `${rows?.length || 0} rows`,
               };
             },
           },
