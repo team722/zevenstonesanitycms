@@ -44,5 +44,15 @@ export default defineType({
         defineField({ name: 'url', title: 'Button URL', type: 'string' }),
       ],
     }),
+    defineField({
+      name: 'revenueLabel',
+      title: 'Revenue Label',
+      type: 'string',
+    }),
+    defineField({
+      name: 'activeUsersLabel',
+      title: 'Active Users Label',
+      type: 'string',
+    }),
   ],
 });

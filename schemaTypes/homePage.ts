@@ -10,6 +10,7 @@ export default defineType({
       name: 'visionSection', title: 'Your Vision Section', type: 'object',
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+        defineField({ name: 'smallHeading', title: 'Small Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text' }),
         defineField({
           name: 'ctaButton',
