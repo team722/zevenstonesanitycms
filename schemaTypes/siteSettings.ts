@@ -81,7 +81,7 @@ export default defineType({
     }),
     defineField({ name: 'contactEmail', title: 'Contact Email', type: 'string' }),
     defineField({ name: 'phoneNumber', title: 'Phone Number', type: 'string' }),
-    defineField({ name: 'address', title: 'Office USA Address', type: 'text', rows: 2 }),
+    defineField({ name: 'address', title: 'Office short Address', type: 'text', rows: 2 }),
     defineField({ name: 'address1', title: 'Office USA Address', type: 'text', rows: 2 }),
     defineField({ name: 'address2', title: 'Office Thirunelveli Address', type: 'text', rows: 2 }),
     defineField({ name: 'address3', title: 'Office Chennai Address', type: 'text', rows: 2 }),
