@@ -1,4 +1,4 @@
-import {defineCliConfig} from 'sanity/cli'
+import { defineCliConfig } from 'sanity/cli'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineCliConfig({
@@ -6,20 +6,20 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
     dataset: process.env.SANITY_STUDIO_DATASET!
   },
-  vite: (config) => {
-    return {
-      ...config,
-      plugins: [
-        ...(config.plugins || []),
-        nodePolyfills({
-          exclude: ['module'],
-          globals: {
-            process: 'build',
-          },
-        }),
-      ],
-    }
-  },
+  // vite: (config) => {
+  //   return {
+  //     ...config,
+  //     plugins: [
+  //       ...(config.plugins || []),
+  //       nodePolyfills({
+  //         exclude: ['module'],
+  //         globals: {
+  //           process: 'build',
+  //         },
+  //       }),
+  //     ],
+  //   }
+  // },
   deployment: {
     /**
      * Enable auto-updates for studios.

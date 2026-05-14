@@ -19,6 +19,7 @@ import successStoriesPage from './successStoriesPage';
 import blogPage from './blogPage';
 import contactPage from './contactPage';
 import contactSubmission from './contactSubmission';
+import landingPageSubmission from './landingPageSubmission';
 
 // Objects
 import heroSection from './heroSection';
@@ -47,6 +48,7 @@ export const schemaTypes = [
   blogPage,
   contactPage,
   contactSubmission,
+  landingPageSubmission,
   
   // Objects
   heroSection,
