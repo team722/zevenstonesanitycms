@@ -68,10 +68,11 @@ export default defineType({
           }]
         }),
         defineField({
-          name: 'trustedLogos',
-          title: 'Trusted By Logos',
+          name: 'trustedBrands',
+          title: 'Trusted Brands (Text)',
           type: 'array',
-          of: [{ type: 'image' }]
+          of: [{ type: 'string' }],
+          description: 'List of brand names to display in the trust strip (e.g., BRAND, COMPANY).'
         }),
       ]
     }),
