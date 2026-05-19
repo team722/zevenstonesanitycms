@@ -87,6 +87,25 @@ export default defineType({
         defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
         defineField({ name: 'videoUrl', title: 'Video URL (Vimeo/YouTube)', type: 'url' }),
         defineField({ name: 'thumbnail', title: 'Video Thumbnail', type: 'image' }),
+        defineField({
+          name: 'overlay',
+          title: 'Video Overlay Content',
+          type: 'object',
+          fields: [
+            defineField({ name: 'badge', title: 'Top Badge (e.g., FEATURED SHOWREEL)', type: 'string' }),
+            defineField({ name: 'title', title: 'Main Title', type: 'string' }),
+            defineField({ name: 'description', title: 'Short Description', type: 'string' }),
+            defineField({
+              name: 'counter',
+              title: 'View Counter Box',
+              type: 'object',
+              fields: [
+                defineField({ name: 'label', title: 'Counter Label (e.g., Total Portfolio Views)', type: 'string' }),
+                defineField({ name: 'value', title: 'Counter Value (e.g., 12.4M+)', type: 'string' })
+              ]
+            })
+          ]
+        }),
       ]
     }),
 
