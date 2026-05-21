@@ -62,6 +62,9 @@ export default defineType({
         defineField({ name: 'tagline', title: 'Tagline', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+        defineField({ name: 'valuePropsHeading', title: 'Value Props Heading', type: 'string' }),
+        defineField({ name: 'socialProofText', title: 'Social Proof Text', type: 'string' }),
+        defineField({ name: 'socialProofRating', title: 'Social Proof Rating', type: 'string' }),
         defineField({
           name: 'valueProps',
           title: 'Value Propositions',
