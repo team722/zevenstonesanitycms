@@ -162,6 +162,7 @@ export default defineType({
       type: 'object',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
+        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
         defineField({
           name: 'examples',
           title: 'Video Examples',
