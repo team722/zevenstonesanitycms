@@ -237,6 +237,7 @@ export default defineType({
                   { title: 'ℹ️ Info', value: 'info' },
                   { title: '⚠️ Warning', value: 'warning' },
                   { title: '📝 Note', value: 'note' },
+                  { title: '✅ Success', value: 'success' },
                 ],
                 layout: 'radio',
               },
@@ -253,7 +254,7 @@ export default defineType({
           preview: {
             select: { title: 'title', subtitle: 'type' },
             prepare({ title, subtitle }) {
-              const icons: Record<string, string> = { tip: '💡', info: 'ℹ️', warning: '⚠️', note: '📝' };
+              const icons: Record<string, string> = { tip: '💡', info: 'ℹ️', warning: '⚠️', note: '📝', success: '✅' };
               return { title: `${icons[subtitle] || '📝'} ${title || 'Callout Box'}`, subtitle };
             },
           },
@@ -370,6 +371,229 @@ export default defineType({
               return {
                 title: `⚖️ ${title || 'Pros & Cons'}`,
                 subtitle: `${pros?.length || 0} pros · ${cons?.length || 0} cons`,
+              };
+            },
+          },
+        },
+
+        // ── Success Story Block ──────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'successStory',
+          title: 'Success Story',
+          fields: [
+            defineField({
+              name: 'metric',
+              title: 'Metric (e.g., +47%)',
+              type: 'string',
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              rows: 3,
+              validation: (r) => r.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'metric', subtitle: 'description' },
+            prepare({ title, subtitle }) {
+              return { title: `🏆 Success Story: ${title || ''}`, subtitle };
+            },
+          },
+        },
+
+        // ── Case Study Highlight Block ──────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'caseStudyHighlight',
+          title: 'Case Study Highlight',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'strategyText',
+              title: 'Strategy Text',
+              type: 'string',
+              description: 'Text next to the blue checkmark icon',
+            }),
+            defineField({
+              name: 'metricValue',
+              title: 'Metric Value',
+              type: 'string',
+              description: 'e.g., 215%',
+            }),
+            defineField({
+              name: 'metricLabel',
+              title: 'Metric Label',
+              type: 'string',
+              description: 'e.g., increase in qualified leads',
+            }),
+          ],
+          preview: {
+            select: { title: 'title', subtitle: 'strategyText', media: 'image' },
+            prepare({ title, subtitle, media }) {
+              return { title: `✨ Highlight: ${title || ''}`, subtitle, media };
+            },
+          },
+        },
+
+        // ── Next Steps Block ────────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'nextStepsBlock',
+          title: 'Next Steps Block',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              initialValue: 'Your Next Steps',
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: 'steps',
+              title: 'Steps',
+              type: 'array',
+              of: [{ type: 'string' }],
+              validation: (r) => r.required().min(1),
+            }),
+            defineField({
+              name: 'buttonText',
+              title: 'Button Text',
+              type: 'string',
+            }),
+            defineField({
+              name: 'buttonUrl',
+              title: 'Button URL',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { title: 'title', steps: 'steps' },
+            prepare({ title, steps }) {
+              return {
+                title: `📋 ${title || 'Next Steps'}`,
+                subtitle: `${steps?.length || 0} steps configured`,
+              };
+            },
+          },
+        },
+
+        // ── Icon Cards Block ────────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'iconCardsBlock',
+          title: 'Icon Cards Grid',
+          fields: [
+            defineField({
+              name: 'heading',
+              title: 'Section Heading',
+              type: 'string',
+            }),
+            defineField({
+              name: 'cards',
+              title: 'Cards',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'iconStyle',
+                      title: 'Icon Color / Style',
+                      type: 'string',
+                      options: {
+                        list: [
+                          { title: 'Blue', value: 'blue' },
+                          { title: 'Purple', value: 'purple' },
+                          { title: 'Green', value: 'green' },
+                          { title: 'Orange', value: 'orange' },
+                          { title: 'Red', value: 'red' },
+                        ],
+                      },
+                      initialValue: 'blue',
+                    }),
+                    defineField({
+                      name: 'iconType',
+                      title: 'Icon SVG Type',
+                      type: 'string',
+                      options: {
+                        list: [
+                          { title: 'Video / Camera', value: 'video' },
+                          { title: 'Microphone / Voice', value: 'mic' },
+                          { title: 'Lightbulb / Idea', value: 'lightbulb' },
+                          { title: 'Code', value: 'code' },
+                          { title: 'Chart / Growth', value: 'chart' },
+                          { title: 'Checkmark', value: 'check' },
+                        ],
+                      },
+                      initialValue: 'video',
+                    }),
+                    defineField({ name: 'title', title: 'Card Title', type: 'string' }),
+                    defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+                  ],
+                  preview: {
+                    select: { title: 'title', subtitle: 'description' },
+                  },
+                },
+              ],
+              validation: (r) => r.min(1).max(6),
+            }),
+          ],
+          preview: {
+            select: { title: 'heading', cards: 'cards' },
+            prepare({ title, cards }) {
+              return {
+                title: `🗂️ Cards Grid: ${title || 'Untitled'}`,
+                subtitle: `${cards?.length || 0} cards`,
+              };
+            },
+          },
+        },
+        // ── Author Bio Block ────────────────────────────────────────────────
+        {
+          type: 'object',
+          name: 'authorBioBlock',
+          title: 'Author Bio Block',
+          fields: [
+            defineField({
+              name: 'author',
+              title: 'Author',
+              type: 'reference',
+              to: [{ type: 'author' }],
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: 'customLinkText',
+              title: 'Custom Link Text',
+              type: 'string',
+              description: 'e.g., "More from Elena"',
+            }),
+            defineField({
+              name: 'customLinkUrl',
+              title: 'Custom Link URL',
+              type: 'url',
+              description: 'Overrides the author\'s LinkedIn URL if provided.',
+            }),
+          ],
+          preview: {
+            select: { title: 'author.name', media: 'author.photo' },
+            prepare({ title, media }) {
+              return {
+                title: `🧑‍💼 Author Bio: ${title || 'Selected'}`,
+                media,
               };
             },
           },
