@@ -58,6 +58,22 @@ export default defineType({
     }),
     defineField({ name: 'copyrightText', title: 'Copyright Text', type: 'string' }),
 
+    // SEO & Scripts
+    defineField({
+      name: 'customHeaderScripts',
+      title: 'Custom Header Scripts',
+      description: 'Scripts to be injected into the <head> of the website (e.g., Google Analytics, Clarity)',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
+      name: 'customBodyScripts',
+      title: 'Custom Body Scripts',
+      description: 'Scripts to be injected right after the opening <body> tag (e.g., Google Tag Manager (noscript))',
+      type: 'text',
+      rows: 5,
+    }),
+
     // Existing Settings
     defineField({
       name: 'partnerLogos', title: 'Partner / Client Logos', type: 'array',
