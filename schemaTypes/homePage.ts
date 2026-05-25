@@ -23,6 +23,14 @@ export default defineType({
         }),
       ]
     }),
+    defineField({
+      name: 'showcaseVideo',
+      title: 'Showcase Video (MP4)',
+      type: 'file',
+      options: {
+        accept: 'video/mp4'
+      }
+    }),
     defineField({ name: 'servicesHeading', title: 'Our Services Heading', type: 'sectionHeading' }),
     defineField({ name: 'testimonialsHeading', title: 'What Our Clients Say Heading', type: 'sectionHeading' }),
     defineField({ name: 'whyChooseUsHeading', title: 'Why Choose Us Heading', type: 'sectionHeading' }),
