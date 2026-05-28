@@ -42,6 +42,17 @@ export default defineType({
     defineField({ name: 'stickyCtaButtonText', title: 'Sticky CTA Button Text', type: 'string' }),
     
     defineField({
+      name: 'contactForm',
+      title: 'Contact Form Texts',
+      type: 'object',
+      fields: [
+        defineField({ name: 'heading', title: 'Form Heading', type: 'string' }),
+        defineField({ name: 'buttonText', title: 'Submit Button Text', type: 'string' }),
+        defineField({ name: 'benefits', title: 'Form Benefits (e.g., Free consultation)', type: 'array', of: [{ type: 'string' }] }),
+      ],
+    }),
+    
+    defineField({
       name: 'midCta',
       title: 'Mid-Journey CTA',
       type: 'object',
@@ -119,6 +130,7 @@ export default defineType({
       title: 'Results',
       type: 'object',
       fields: [
+        defineField({ name: 'storyHeading', title: 'Story Heading (e.g., The Story Behind the Numbers)', type: 'string' }),
         defineField({ name: 'overview', title: 'Overview', type: 'text', rows: 3 }),
         defineField({
           name: 'metrics',
@@ -147,6 +159,10 @@ export default defineType({
       title: 'Before vs After Comparison',
       type: 'object',
       fields: [
+        defineField({ name: 'tagline', title: 'Tagline (e.g. The Transformation)', type: 'string' }),
+        defineField({ name: 'heading', title: 'Heading (e.g. Before vs After)', type: 'string' }),
+        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+        defineField({ name: 'bottomBadgeText', title: 'Bottom Badge Text', type: 'string' }),
         defineField({
           name: 'before',
           title: 'Before Metrics',
@@ -176,6 +192,16 @@ export default defineType({
 
     // --- Process Timeline ---
     defineField({
+      name: 'processSection',
+      title: 'Process Section Texts',
+      type: 'object',
+      fields: [
+        defineField({ name: 'tagline', title: 'Tagline (e.g. Our Process)', type: 'string' }),
+        defineField({ name: 'heading', title: 'Heading (e.g. How We Made It Happen)', type: 'string' }),
+        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+      ],
+    }),
+    defineField({
       name: 'processTimeline',
       title: 'Process Timeline',
       type: 'array',
@@ -188,6 +214,18 @@ export default defineType({
           defineField({ name: 'deliverables', title: 'Deliverables', type: 'array', of: [{ type: 'string' }] }),
         ],
       }],
+    }),
+
+    // --- Related Stories ---
+    defineField({
+      name: 'relatedStoriesSection',
+      title: 'Related Stories Section Texts',
+      type: 'object',
+      fields: [
+        defineField({ name: 'tagline', title: 'Tagline (e.g. More Success Stories)', type: 'string' }),
+        defineField({ name: 'heading', title: 'Heading (e.g. Explore Other Transformations)', type: 'string' }),
+        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+      ],
     }),
 
     // --- Testimonial ---
