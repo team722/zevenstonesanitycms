@@ -94,17 +94,18 @@ export default defineType({
       description: 'Trust badges below hero buttons (e.g., "Free consultation", "No obligation")',
       of: [{ type: 'string' }],
     }),
-
     // =============================================
     // GROUP 2: IMPACT & METRICS
     // =============================================
     defineField({
-      name: 'results', title: 'Results & Impact', type: 'object',
+      name: 'results', title: 'Impact Metrics', type: 'object',
       group: 'impact',
-      description: 'Metrics shown in "Impact at a Glance" section and the Results tab',
+      description: 'Metrics and overview content shown outside the tabbed case details',
       fields: [
         defineField({ name: 'storyHeading', title: 'Story Heading', type: 'string', description: 'Heading for the overview area (default: "The Story Behind the Numbers")' }),
         defineField({ name: 'overview', title: 'Overview', type: 'text', rows: 3, description: 'Summary paragraph displayed below the story heading' }),
+        defineField({ name: 'measurableResultsHeading', title: 'Measurable Results Heading', type: 'string', description: 'Heading for the dark metrics section (default: "Impact at a Glance")' }),
+        defineField({ name: 'measurableResultsDescription', title: 'Measurable Results Description', type: 'text', rows: 2, description: 'Optional short text shown below the measurable results heading' }),
         defineField({
           name: 'metrics', title: 'Key Metrics', type: 'array',
           description: 'Metric cards shown in the "Impact at a Glance" dark section',
@@ -116,14 +117,8 @@ export default defineType({
             ],
           }],
         }),
-        defineField({
-          name: 'additionalImpact', title: 'Additional Impact Points', type: 'array',
-          description: 'Bullet points shown in the Results tab under "Business Impact Highlights"',
-          of: [{ type: 'string' }],
-        }),
       ],
     }),
-
     // =============================================
     // GROUP 3: BEFORE VS AFTER
     // =============================================
@@ -160,7 +155,6 @@ export default defineType({
         }),
       ],
     }),
-
     // =============================================
     // GROUP 4: CHALLENGE / SOLUTION / RESULTS TABS
     // =============================================
@@ -193,6 +187,25 @@ export default defineType({
       ],
     }),
 
+    defineField({
+      name: 'resultsTab', title: 'The Results', type: 'object',
+      group: 'story',
+      description: 'Content for the "Results" tab',
+      fields: [
+        defineField({ name: 'heading', title: 'Heading', type: 'string', description: 'Default: "Business Impact"' }),
+        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2, description: 'Description shown below the Results tab heading' }),
+        defineField({ name: 'highlightsHeading', title: 'Highlights Heading', type: 'string', description: 'Heading above the result highlight cards' }),
+        defineField({
+          name: 'additionalImpact',
+          title: 'Additional Impact Points',
+          type: 'array',
+          description: 'Impact bullet cards shown under the Results tab',
+          of: [{ type: 'string' }],
+        }),
+        defineField({ name: 'badgeText', title: 'Badge Text', type: 'string', description: 'Badge text at the bottom of the Results card (default: "Success Story")' }),
+      ],
+    }),
+
     // =============================================
     // GROUP 5: PROCESS TIMELINE
     // =============================================
@@ -220,6 +233,14 @@ export default defineType({
         ],
       }],
     }),
+    defineField({
+      name: 'totalDuration',
+      title: 'Total Duration',
+      type: 'string',
+      group: 'process',
+      description: 'Total project duration shown in the process timeline summary. Leave empty to use the Timeline field.',
+    }),
+
 
     // =============================================
     // GROUP 6: CTAs & FORMS
