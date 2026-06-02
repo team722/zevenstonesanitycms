@@ -37,6 +37,11 @@ export default defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: 'displayOrder', title: 'Display Order', type: 'number',
+      group: 'hero',
+      description: 'Controls case study listing order. Lower numbers appear first.',
+    }),
+    defineField({
       name: 'image', title: 'Hero Image', type: 'image',
       group: 'hero',
       description: 'Main image displayed on the right side of the hero section',
