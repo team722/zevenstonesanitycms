@@ -20,6 +20,7 @@ import blogPage from './blogPage';
 import contactPage from './contactPage';
 import contactSubmission from './contactSubmission';
 import landingPageSubmission from './landingPageSubmission';
+import caseStudySubmission from './caseStudySubmission';
 
 // Objects
 import heroSection from './heroSection';
@@ -49,6 +50,7 @@ export const schemaTypes = [
   contactPage,
   contactSubmission,
   landingPageSubmission,
+  caseStudySubmission,
   
   // Objects
   heroSection,
