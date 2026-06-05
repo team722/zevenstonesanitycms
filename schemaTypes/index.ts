@@ -7,6 +7,7 @@ import testimonial from './testimonial';
 import portfolioProject from './portfolioProject';
 import portfolioCategory from './portfolioCategory';
 import service from './service';
+import nestedService from './nestedService';
 import caseStudy from './caseStudy';
 import faqItem from './faqItem';
 import homePage from './homePage';
@@ -37,6 +38,7 @@ export const schemaTypes = [
   portfolioProject,
   portfolioCategory,
   service,
+  nestedService,
   caseStudy,
   faqItem,
   homePage,
