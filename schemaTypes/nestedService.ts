@@ -4,320 +4,323 @@ export default defineType({
   name: 'nestedService',
   title: 'Nested Service',
   type: 'document',
+  groups: [
+    { name: 'general', title: 'General Info' },
+    { name: 'hero', title: 'Hero Section' },
+    { name: 'disciplines', title: 'Disciplines' },
+    { name: 'process', title: 'Process Section' },
+    { name: 'caseStudies', title: 'Case Studies Section' },
+    { name: 'faqs', title: 'FAQs Section' },
+    { name: 'ctas', title: 'CTAs & Engagement' },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
-    defineField({ name: 'title', title: 'Service Title', type: 'string', validation: (r) => r.required() }),
+    // --- General ---
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      group: 'general',
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'general',
       options: { source: 'title', maxLength: 96 },
-      validation: (r) => r.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'parentService',
-      title: 'Parent Service Category',
+      title: 'Parent Service',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'The main service category this belongs to (e.g., Digital Marketing)',
-      validation: (r) => r.required()
+      group: 'general',
+      description: 'The main service category this nested service belongs to.',
     }),
-    defineField({ name: 'description', title: 'Short Description', type: 'text', rows: 2 }),
-    defineField({ name: 'details', title: 'Service Detail Points', type: 'array', of: [{ type: 'string' }] }),
-    defineField({
-      name: 'label',
-      title: 'Label',
-      type: 'string',
-    }),
-    defineField({
-      name: 'ctaButton',
-      title: 'CTA Button',
-      type: 'object',
-      fields: [
-        defineField({ name: 'text', title: 'Button Text', type: 'string' }),
-        defineField({ name: 'url', title: 'Button URL', type: 'string' }),
-      ],
-    }),
-    defineField({
-      name: 'secondaryCtaButton',
-      title: 'Secondary CTA Button',
-      type: 'object',
-      fields: [
-        defineField({ name: 'text', title: 'Button Text', type: 'string' }),
-        defineField({ name: 'url', title: 'Button URL', type: 'string' }),
-      ],
-    }),
-    defineField({
-      name: 'image', title: 'Service Image', type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({ name: 'isFeatured', title: 'Show in Homepage Grid?', type: 'boolean', initialValue: false }),
-    defineField({ name: 'displayOrder', title: 'Display Order', type: 'number' }),
 
-    // --- New Single Page Design Fields ---
-
-    // Hero Section
+    // --- Hero ---
     defineField({
       name: 'hero',
       title: 'Hero Section',
       type: 'object',
+      group: 'hero',
       fields: [
-        defineField({ name: 'title', title: 'Headline', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
+        defineField({ name: 'eyebrow', title: 'Eyebrow text', type: 'string' }),
+        defineField({ name: 'title', title: 'Title', type: 'string' }),
+        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text' }),
         defineField({
-          name: 'stats',
-          title: 'Hero Stats',
+          name: 'actions',
+          title: 'Actions',
           type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'value', title: 'Value (e.g., 10+)', type: 'string' }),
-              defineField({ name: 'label', title: 'Label (e.g., Years Experience)', type: 'string' })
-            ]
-          }]
-        }),
-        defineField({
-          name: 'trustedBrands',
-          title: 'Trusted Brands (Text)',
-          type: 'array',
-          of: [{ type: 'string' }],
-          description: 'List of brand names to display in the trust strip (e.g., BRAND, COMPANY).'
-        }),
-      ]
-    }),
-
-    // Featured Video Highlight
-    defineField({
-      name: 'featuredVideo',
-      title: 'Featured Video',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
-        defineField({ name: 'videoUrl', title: 'Video URL (Vimeo/YouTube)', type: 'url' }),
-        defineField({ name: 'thumbnail', title: 'Video Thumbnail', type: 'image' }),
-        defineField({
-          name: 'overlay',
-          title: 'Video Overlay Content',
-          type: 'object',
-          fields: [
-            defineField({ name: 'badge', title: 'Top Badge (e.g., FEATURED SHOWREEL)', type: 'string' }),
-            defineField({ name: 'title', title: 'Main Title', type: 'string' }),
-            defineField({ name: 'description', title: 'Short Description', type: 'string' }),
-            defineField({
-              name: 'counter',
-              title: 'View Counter Box',
+          of: [
+            {
               type: 'object',
               fields: [
-                defineField({ name: 'label', title: 'Counter Label (e.g., Total Portfolio Views)', type: 'string' }),
-                defineField({ name: 'value', title: 'Counter Value (e.g., 12.4M+)', type: 'string' })
-              ]
-            })
-          ]
+                { name: 'label', title: 'Label', type: 'string' },
+                { name: 'url', title: 'URL', type: 'string' },
+                { name: 'style', title: 'Style', type: 'string', options: { list: ['primary', 'secondary'] } },
+              ],
+            },
+          ],
         }),
-      ]
-    }),
-
-    // Benefits (Videos Built for Performance)
-    defineField({
-      name: 'benefits',
-      title: 'Benefits Section',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({
-          name: 'benefitsList',
-          title: 'Benefits List',
+          name: 'trustChips',
+          title: 'Trust Chips',
           type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'icon', title: 'Icon (SVG string or identifier)', type: 'image' }),
-              defineField({ name: 'title', title: 'Benefit Title', type: 'string' }),
-              defineField({ name: 'description', title: 'Benefit Description', type: 'text', rows: 3 }),
-            ]
-          }]
-        })
-      ]
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'iconName', title: 'Icon Name (lucide)', type: 'string' },
+                { name: 'label', title: 'Label', type: 'string' },
+              ],
+            },
+          ],
+        }),
+        defineField({
+          name: 'illustration',
+          title: 'Illustration Image',
+          type: 'image',
+          description: 'Optional: Overrides the hardcoded SVG illustration.',
+          options: { hotspot: true },
+        }),
+      ],
     }),
 
-    // Process
+    // --- Stats Bar ---
     defineField({
-      name: 'process',
+      name: 'statsBar',
+      title: 'Stats Bar',
+      type: 'array',
+      group: 'hero',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'value', title: 'Value', type: 'string' },
+            { name: 'label', title: 'Label', type: 'string' },
+          ],
+        },
+      ],
+    }),
+
+    // --- Disciplines ---
+    defineField({
+      name: 'disciplines',
+      title: 'Disciplines',
+      type: 'array',
+      group: 'disciplines',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required() },
+            { name: 'intro', title: 'Intro Text', type: 'text' },
+            { name: 'deliverablesLabel', title: 'Deliverables Label', type: 'string', initialValue: "What's included" },
+            { name: 'deliverables', title: 'Deliverables', type: 'array', of: [{ type: 'string' }] },
+            { name: 'outcomePills', title: 'Outcome Pills', type: 'array', of: [{ type: 'string' }] },
+            {
+              name: 'insideCard',
+              title: 'Inside Card Details',
+              type: 'object',
+              fields: [
+                { name: 'title', title: 'Card Title', type: 'string' },
+                { name: 'subtitle', title: 'Card Subtitle', type: 'string' },
+                { name: 'items', title: 'Card Items', type: 'array', of: [{ type: 'string' }] },
+              ],
+            },
+            {
+              name: 'caseStudy',
+              title: 'Highlight Case Study',
+              type: 'object',
+              fields: [
+                { name: 'tag', title: 'Tag (e.g., Case Study • Content)', type: 'string' },
+                { name: 'mainMetric', title: 'Main Metric', type: 'string' },
+                { name: 'title', title: 'Title', type: 'string' },
+                { name: 'description', title: 'Description', type: 'text' },
+                { name: 'logo', title: 'Client Logo', type: 'image' },
+                { name: 'url', title: 'URL', type: 'string' },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+
+    // --- Process Section ---
+    defineField({
+      name: 'processSection',
       title: 'Process Section',
       type: 'object',
+      group: 'process',
       fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
-        defineField({
+        { name: 'secLabel', title: 'Section Label', type: 'string' },
+        { name: 'secTitle', title: 'Section Title', type: 'string' },
+        {
           name: 'steps',
-          title: 'Process Steps',
+          title: 'Steps',
           type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'title', title: 'Step Title', type: 'string' }),
-              defineField({ name: 'description', title: 'Step Description', type: 'text', rows: 3 }),
-            ]
-          }]
-        })
-      ]
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'title', title: 'Title', type: 'string' },
+                { name: 'description', title: 'Description', type: 'text' },
+              ],
+            },
+          ],
+        },
+        { name: 'rightCopy', title: 'Right Side Copy', type: 'array', of: [{ type: 'text' }] },
+        {
+          name: 'timelineCard',
+          title: 'Timeline Card',
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Title', type: 'string' },
+            {
+              name: 'items',
+              title: 'Items',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    { name: 'period', title: 'Period (e.g. Months 1-3)', type: 'string' },
+                    { name: 'description', title: 'Description', type: 'string' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }),
 
-    // Portfolio Showcase
+    // --- Case Studies Section ---
     defineField({
-      name: 'portfolio',
-      title: 'Portfolio Showcase',
+      name: 'caseStudiesSection',
+      title: 'Case Studies Section',
       type: 'object',
+      group: 'caseStudies',
       fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
-        defineField({
-          name: 'examples',
-          title: 'Video Examples',
+        { name: 'secLabel', title: 'Section Label', type: 'string' },
+        { name: 'secTitle', title: 'Section Title', type: 'string' },
+        { name: 'secSub', title: 'Section Subtitle', type: 'text' },
+        {
+          name: 'caseStudies',
+          title: 'Case Studies',
           type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'title', title: 'Project Title', type: 'string' }),
-              defineField({ name: 'category', title: 'Category (e.g., Promo)', type: 'string' }),
-              defineField({ name: 'objective', title: 'Objective', type: 'string' }),
-              defineField({ name: 'result', title: 'Result', type: 'string' }),
-              defineField({ name: 'videoUrl', title: 'Video URL', type: 'url' }),
-              defineField({ name: 'thumbnail', title: 'Thumbnail', type: 'image' }),
-            ]
-          }]
-        })
-      ]
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'disciplineTag', title: 'Discipline Tag', type: 'string' },
+                { name: 'logo', title: 'Client Logo', type: 'image' },
+                { name: 'mainMetric', title: 'Main Metric', type: 'string' },
+                {
+                  name: 'results',
+                  title: 'Results',
+                  type: 'array',
+                  of: [
+                    {
+                      type: 'object',
+                      fields: [
+                        { name: 'value', title: 'Value', type: 'string' },
+                        { name: 'label', title: 'Label', type: 'string' },
+                      ],
+                    },
+                  ],
+                },
+                { name: 'title', title: 'Title', type: 'string' },
+                { name: 'challenge', title: 'The Challenge', type: 'text' },
+                { name: 'tacticalActions', title: 'Tactical Actions', type: 'array', of: [{ type: 'string' }] },
+                { name: 'quote', title: 'Quote', type: 'string' },
+                { name: 'url', title: 'URL', type: 'string' },
+              ],
+            },
+          ],
+        },
+      ],
     }),
 
-    // Key Numbers/Stats
-    defineField({
-      name: 'metrics',
-      title: 'Key Metrics Strip',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({
-          name: 'list',
-          title: 'Metrics',
-          type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'value', title: 'Value (e.g., 250+)', type: 'string' }),
-              defineField({ name: 'label', title: 'Label', type: 'string' }),
-            ]
-          }]
-        })
-      ]
-    }),
-
-    // What We Create (Features List)
-    defineField({
-      name: 'features',
-      title: 'What We Create (Features)',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 3 }),
-        defineField({
-          name: 'list',
-          title: 'Feature Cards',
-          type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'title', title: 'Card Title', type: 'string' }),
-              defineField({ name: 'subTitle', title: 'Subtitle', type: 'string' }),
-              defineField({ name: 'inclusions', title: 'Inclusions (Checklist)', type: 'array', of: [{ type: 'string' }] }),
-            ]
-          }]
-        })
-      ]
-    }),
-
-    // Testimonials
-    defineField({
-      name: 'testimonials',
-      title: 'Testimonials Section',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({
-          name: 'list',
-          title: 'Testimonials',
-          type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'rating', title: 'Rating (1-5)', type: 'number', initialValue: 5 }),
-              defineField({ name: 'quote', title: 'Quote', type: 'text', rows: 4 }),
-              defineField({ name: 'author', title: 'Author Name', type: 'string' }),
-              defineField({ name: 'company', title: 'Author Company/Role', type: 'string' }),
-            ]
-          }]
-        })
-      ]
-    }),
-
-    // Engagement Models
-    defineField({
-      name: 'engagement',
-      title: 'Engagement Model',
-      type: 'object',
-      fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
-        defineField({ name: 'cardTitle', title: 'Card Title (e.g., Get a Custom Quote)', type: 'string' }),
-        defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
-        defineField({ name: 'ctaText', title: 'CTA Button Text', type: 'string' }),
-        defineField({ name: 'ctaUrl', title: 'CTA Button URL', type: 'string' }),
-      ]
-    }),
-
-    // FAQs
+    // --- FAQs ---
     defineField({
       name: 'faqs',
-      title: 'FAQs',
+      title: 'FAQs Section',
       type: 'object',
+      group: 'faqs',
       fields: [
-        defineField({ name: 'title', title: 'Section Title', type: 'string' }),
-        defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
-        defineField({
+        { name: 'title', title: 'Title', type: 'string' },
+        { name: 'subtitle', title: 'Subtitle', type: 'text' },
+        {
           name: 'list',
-          title: 'Questions',
+          title: 'Questions & Answers',
           type: 'array',
-          of: [{
-            type: 'object',
-            fields: [
-              defineField({ name: 'question', title: 'Question', type: 'string' }),
-              defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3 }),
-            ]
-          }]
-        })
-      ]
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'question', title: 'Question', type: 'string' },
+                { name: 'answer', title: 'Answer', type: 'text' },
+              ],
+            },
+          ],
+        },
+      ],
     }),
 
-    // Bottom CTA
+    // --- CTAs & Engagement ---
     defineField({
-      name: 'bottomCta',
-      title: 'Bottom CTA Section',
+      name: 'faqCta',
+      title: 'Mid-Page CTA (above Case Studies)',
       type: 'object',
+      group: 'ctas',
       fields: [
-        defineField({ name: 'title', title: 'Headline', type: 'string' }),
-        defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
-        defineField({ name: 'buttonText', title: 'Button Text', type: 'string' }),
-        defineField({ name: 'buttonUrl', title: 'Button URL', type: 'string' }),
-        defineField({
-          name: 'note',
-          title: 'Note Below Button',
-          type: 'string',
-          description: 'Text shown below CTA button (e.g., We’ll get back to you within 24 hours)'
-        }),
-      ]
+        { name: 'heading', title: 'Heading', type: 'string' },
+        { name: 'description', title: 'Description', type: 'text' },
+        { name: 'buttonText', title: 'Button Text', type: 'string' },
+        { name: 'buttonUrl', title: 'Button URL', type: 'string' },
+        { name: 'trustNote', title: 'Trust Note', type: 'string' },
+        { name: 'image', title: 'Side Image', type: 'image' },
+      ],
+    }),
+    defineField({
+      name: 'finalCta',
+      title: 'Final CTA',
+      type: 'object',
+      group: 'ctas',
+      fields: [
+        { name: 'title', title: 'Title', type: 'string' },
+        { name: 'description', title: 'Description', type: 'text' },
+        { name: 'primaryButtonText', title: 'Primary Button Text', type: 'string' },
+        { name: 'primaryButtonUrl', title: 'Primary Button URL', type: 'string' },
+        { name: 'secondaryButtonText', title: 'Secondary Button Text', type: 'string' },
+        { name: 'secondaryButtonUrl', title: 'Secondary Button URL', type: 'string' },
+        { name: 'trustNote', title: 'Trust Note', type: 'string' },
+        { name: 'badges', title: 'Badges', type: 'array', of: [{ type: 'string' }] },
+      ],
+    }),
+
+    // --- SEO ---
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      type: 'string',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      group: 'seo',
     }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'description', media: 'image' },
+    select: {
+      title: 'title',
+      subtitle: 'parentService.title',
+    },
   },
 });
