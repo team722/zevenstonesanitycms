@@ -25,6 +25,8 @@ export default defineType({
       ],
     }),
     // Global Footer
+    defineField({ name: 'companyName', title: 'Company Name', type: 'string' }),
+    defineField({ name: 'websiteUrl', title: 'Website URL', type: 'url' }),
     defineField({ name: 'footerDescription', title: 'Footer Description', type: 'text', rows: 3 }),
     defineField({
       name: 'footerNavigation', title: 'Footer Quick Links', type: 'array',
@@ -43,6 +45,74 @@ export default defineType({
         fields: [
           defineField({ name: 'text', title: 'Service Name', type: 'string' }),
           defineField({ name: 'url', title: 'URL', type: 'string' }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'footerServiceColumns',
+      title: 'Footer Service Columns',
+      description: 'Optional grouped service columns for the large footer menu. If empty, the website uses nested service documents or Footer Expertise Links.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: 'Column Title', type: 'string' }),
+          defineField({ name: 'url', title: 'Column URL', type: 'string' }),
+          defineField({
+            name: 'links',
+            title: 'Links',
+            type: 'array',
+            of: [{
+              type: 'object',
+              fields: [
+                defineField({ name: 'text', title: 'Link Text', type: 'string' }),
+                defineField({ name: 'url', title: 'URL', type: 'string' }),
+              ],
+            }],
+          }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'footerLinkColumns',
+      title: 'Footer Secondary Link Columns',
+      description: 'Optional grouped columns such as Company, Resources, and Services.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: 'Column Title', type: 'string' }),
+          defineField({
+            name: 'links',
+            title: 'Links',
+            type: 'array',
+            of: [{
+              type: 'object',
+              fields: [
+                defineField({ name: 'text', title: 'Link Text', type: 'string' }),
+                defineField({ name: 'url', title: 'URL', type: 'string' }),
+              ],
+            }],
+          }),
+        ],
+      }],
+    }),
+    defineField({
+      name: 'footerTrustBadges',
+      title: 'Footer Trust Badges',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'officeLocations',
+      title: 'Office Locations',
+      description: 'Optional managed office list. If empty, the website uses the existing USA, Thirunelveli, and Chennai address fields.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: 'Office Title', type: 'string' }),
+          defineField({ name: 'address', title: 'Address', type: 'text', rows: 3 }),
         ],
       }],
     }),
@@ -104,5 +174,6 @@ export default defineType({
     defineField({ name: 'linkedIn', title: 'LinkedIn URL', type: 'url' }),
     defineField({ name: 'instagram', title: 'Instagram URL', type: 'url' }),
     defineField({ name: 'facebook', title: 'Facebook URL', type: 'url' }),
+    defineField({ name: 'twitter', title: 'X / Twitter URL', type: 'url' }),
   ],
 });
