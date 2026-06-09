@@ -144,6 +144,13 @@ export default defineType({
                 { name: 'url', title: 'URL', type: 'string' },
               ],
             },
+             defineField({
+          name: 'disciplineIllustration',
+          title: 'Discipline Illustration Image',
+          type: 'image',
+          description: 'Optional: Overrides the hardcoded SVG illustration.',
+          options: { hotspot: true },
+        }),
           ],
         },
       ],
