@@ -598,6 +598,44 @@ export default defineType({
             },
           },
         },
+        {
+          type: 'object',
+          name: 'ctaBanner',
+          title: 'CTA Banner',
+          fields: [
+            defineField({
+              name: 'heading',
+              title: 'Heading',
+              type: 'string',
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              rows: 2,
+            }),
+            defineField({
+              name: 'buttonText',
+              title: 'Button Text',
+              type: 'string',
+            }),
+            defineField({
+              name: 'buttonUrl',
+              title: 'Button URL',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { title: 'heading', subtitle: 'buttonText' },
+            prepare({ title, subtitle }) {
+              return {
+                title: `CTA Banner: ${title || 'Untitled'}`,
+                subtitle: subtitle || 'Blog post call-to-action',
+              };
+            },
+          },
+        },
       ],
     }),
 
