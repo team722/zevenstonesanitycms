@@ -13,6 +13,7 @@ import faqItem from './faqItem';
 import homePage from './homePage';
 import siteSettings from './siteSettings';
 import landingPage from './landingPage';
+import websiteLandingPage from './websiteLandingPage';
 import aboutPage from './aboutPage';
 import servicesPage from './servicesPage';
 import portfolioPage from './portfolioPage';
@@ -44,6 +45,7 @@ export const schemaTypes = [
   homePage,
   siteSettings,
   landingPage,
+  websiteLandingPage,
   aboutPage,
   servicesPage,
   portfolioPage,
