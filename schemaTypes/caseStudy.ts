@@ -48,6 +48,12 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: 'logo', title: 'Logo Image', type: 'image',
+      group: 'hero',
+      description: 'Client logo displayed in the success story home page section',
+      options: { hotspot: true },
+    }),
+    defineField({
       name: 'title', title: 'Story Title', type: 'string',
       group: 'hero',
       description: 'Main heading displayed in the hero section',
