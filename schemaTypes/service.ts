@@ -85,8 +85,14 @@ export default defineType({
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
-        defineField({ name: 'videoUrl', title: 'Video URL (Vimeo/YouTube)', type: 'url' }),
-        defineField({ name: 'thumbnail', title: 'Video Thumbnail', type: 'image' }),
+        defineField({ 
+          name: 'video', 
+          title: 'Video Upload (MP4)', 
+          type: 'file',
+          options: {
+            accept: 'video/mp4'
+          }
+        }),
         defineField({
           name: 'overlay',
           title: 'Video Overlay Content',
