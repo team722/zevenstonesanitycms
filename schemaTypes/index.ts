@@ -24,6 +24,7 @@ import contactSubmission from './contactSubmission';
 import landingPageSubmission from './landingPageSubmission';
 import websiteLandingPageSubmission from './websiteLandingPageSubmission';
 import caseStudySubmission from './caseStudySubmission';
+import websiteLandingPageAbTestEvent from './websiteLandingPageAbTestEvent';
 
 // Objects
 import heroSection from './heroSection';
@@ -57,6 +58,7 @@ export const schemaTypes = [
   landingPageSubmission,
   websiteLandingPageSubmission,
   caseStudySubmission,
+  websiteLandingPageAbTestEvent,
   
   // Objects
   heroSection,

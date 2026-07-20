@@ -18,6 +18,7 @@ export default {
     { name: 'about', title: 'About Section' },
     { name: 'finalCta', title: 'Final CTA & Form' },
     { name: 'seo', title: 'SEO' },
+    { name: 'visibility', title: 'Visibility Controls' },
   ],
   fields: [
     // Hero
@@ -441,6 +442,28 @@ export default {
       type: 'array',
       group: 'finalCta',
       of: [{ type: 'string' }]
+    },
+
+    // Visibility Controls
+    {
+      name: 'sectionVisibility',
+      title: 'Section Visibility Controls',
+      type: 'object',
+      group: 'visibility',
+      fields: [
+        { name: 'showSocialProof', title: 'Show Social Proof Bar', type: 'boolean', initialValue: true },
+        { name: 'showShowcaseVideo', title: 'Show Showcase Video', type: 'boolean', initialValue: true },
+        { name: 'showProblem', title: 'Show Problem Section', type: 'boolean', initialValue: true },
+        { name: 'showSolution', title: 'Show Solution Section', type: 'boolean', initialValue: true },
+        { name: 'showHowItWorks', title: 'Show How It Works', type: 'boolean', initialValue: true },
+        { name: 'showNumbers', title: 'Show The Numbers', type: 'boolean', initialValue: true },
+        { name: 'showDifferentiation', title: 'Show Differentiation', type: 'boolean', initialValue: true },
+        { name: 'showPartnership', title: 'Show Partnership Models', type: 'boolean', initialValue: true },
+        { name: 'showResults', title: 'Show Results / Case Studies', type: 'boolean', initialValue: true },
+        { name: 'showTestimonials', title: 'Show Testimonials', type: 'boolean', initialValue: true },
+        { name: 'showQualifier', title: 'Show Qualifier Section', type: 'boolean', initialValue: true },
+        { name: 'showAbout', title: 'Show About Section', type: 'boolean', initialValue: true },
+      ]
     },
 
     // SEO
