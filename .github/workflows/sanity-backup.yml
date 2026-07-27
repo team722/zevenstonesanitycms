@@ -1,0 +1,52 @@
+name: Sanity Automated Backup
+
+on:
+  schedule:
+    # Runs automatically at 00:00 UTC every day
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # Allows manual triggering from the Actions tab for testing
+
+env:
+  # The project ID allows the Sanity CLI to know which project to target
+  SANITY_STUDIO_PROJECT_ID: 'h79epwt4'
+  
+  # IMPORTANT: We are targeting test-restore first for validation!
+  # When you are ready for production, change this to 'production'.
+  TARGET_DATASET: 'test-restore'
+
+jobs:
+  backup:
+    name: Export Dataset and Store Artifact
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Sanity CLI
+        run: npm install -g @sanity/cli
+        
+      - name: Export Sanity Dataset
+        env:
+          # This token must be added to GitHub Repository Secrets
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: |
+          echo "Starting backup for dataset: $TARGET_DATASET"
+          npx sanity dataset export $TARGET_DATASET backup-${TARGET_DATASET}.tar.gz
+          echo "Backup completed successfully!"
+          
+      - name: Upload Backup as Workflow Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Name of the artifact in the GitHub UI
+          name: sanity-backup-${{ env.TARGET_DATASET }}
+          # Path to the file generated in the previous step
+          path: backup-${{ env.TARGET_DATASET }}.tar.gz
+          # The backup will automatically expire and be deleted after 90 days
+          retention-days: 90
