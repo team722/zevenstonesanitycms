@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: '20'
           
+      - name: Install Project Dependencies
+        run: npm ci || npm install
+        
       - name: Install Sanity CLI
         run: npm install -g @sanity/cli
         
