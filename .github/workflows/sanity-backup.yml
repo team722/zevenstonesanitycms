@@ -2,8 +2,8 @@ name: Sanity Automated Backup
 
 on:
   schedule:
-    # Runs automatically at 00:00 UTC every day
-    - cron: '0 14 * * *'
+    # Runs automatically at 04:30 UTC every day
+    - cron: '30 4 * * *'
   workflow_dispatch:
     # Allows manual triggering from the Actions tab for testing
 
