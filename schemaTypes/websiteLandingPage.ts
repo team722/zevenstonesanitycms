@@ -21,6 +21,24 @@ export default {
     { name: 'visibility', title: 'Visibility Controls' },
   ],
   fields: [
+    // Internal & Routing
+    {
+      name: 'internalTitle',
+      title: 'Internal Title',
+      type: 'string',
+      description: 'A private name to easily identify this page in Sanity Studio (e.g. "Q3 Agency Promo").'
+    },
+    {
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      description: 'The URL path for this landing page. (e.g. "q3-promo"). This will dictate the live URL.',
+      options: {
+        source: 'internalTitle',
+        maxLength: 96,
+      }
+    },
+
     // Hero
     {
       name: 'heroHeading',
@@ -481,8 +499,15 @@ export default {
     }
   ],
   preview: {
-    prepare() {
-      return { title: 'Website Landing Page' };
+    select: {
+      title: 'internalTitle',
+      slug: 'slug.current'
+    },
+    prepare({ title, slug }) {
+      return { 
+        title: title || 'Untitled Landing Page',
+        subtitle: slug ? `URL: /${slug}` : 'URL: Not set (Legacy Fallback)',
+      };
     }
   }
 };
