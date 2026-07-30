@@ -2,8 +2,8 @@ name: Sanity Automated Backup
 
 on:
   schedule:
-    # Runs automatically at 01:00 UTC every day
-    - cron: '30 7 * * *'
+    # Runs automatically at 04:29 UTC every day
+    - cron: '29 4 * * *'
   workflow_dispatch:
     # Allows manual triggering from the Actions tab for testing
 
@@ -13,7 +13,7 @@ env:
   
   # IMPORTANT: We are targeting test-restore first for validation!
   # When you are ready for production, change this to 'production'.
-  TARGET_DATASET: 'test-restore'
+  TARGET_DATASET: 'production'
 
 jobs:
   backup:
