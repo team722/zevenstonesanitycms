@@ -4,26 +4,38 @@ export default defineType({
   name: 'service',
   title: 'Service',
   type: 'document',
+  groups: [
+    { name: 'core', title: 'Core Info & Listing' },
+    { name: 'heroCta', title: 'Hero & CTAs' },
+    { name: 'mediaPortfolio', title: 'Media & Portfolio' },
+    { name: 'featuresBenefits', title: 'Features & Benefits' },
+    { name: 'processEngagement', title: 'Process & Engagement' },
+    { name: 'socialProof', title: 'Social Proof' },
+    { name: 'faqFooter', title: 'FAQ & Footer CTA' },
+  ],
   fields: [
-    defineField({ name: 'title', title: 'Service Title', type: 'string', validation: (r) => r.required() }),
+    defineField({ name: 'title', title: 'Service Title', type: 'string', group: 'core', validation: (r) => r.required() }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'core',
       options: { source: 'title', maxLength: 96 },
       validation: (r) => r.required()
     }),
-    defineField({ name: 'description', title: 'Short Description', type: 'text', rows: 2 }),
-    defineField({ name: 'details', title: 'Service Detail Points', type: 'array', of: [{ type: 'string' }] }),
+    defineField({ name: 'description', title: 'Short Description', type: 'text', rows: 2, group: 'core' }),
+    defineField({ name: 'details', title: 'Service Detail Points', type: 'array', group: 'core', of: [{ type: 'string' }] }),
     defineField({
       name: 'label',
       title: 'Label',
       type: 'string',
+      group: 'core',
     }),
     defineField({
       name: 'ctaButton',
       title: 'CTA Button',
       type: 'object',
+      group: 'heroCta',
       fields: [
         defineField({ name: 'text', title: 'Button Text', type: 'string' }),
         defineField({ name: 'url', title: 'Button URL', type: 'string' }),
@@ -33,6 +45,7 @@ export default defineType({
       name: 'secondaryCtaButton',
       title: 'Secondary CTA Button',
       type: 'object',
+      group: 'heroCta',
       fields: [
         defineField({ name: 'text', title: 'Button Text', type: 'string' }),
         defineField({ name: 'url', title: 'Button URL', type: 'string' }),
@@ -40,10 +53,11 @@ export default defineType({
     }),
     defineField({
       name: 'image', title: 'Service Image', type: 'image',
+      group: 'core',
       options: { hotspot: true },
     }),
-    defineField({ name: 'isFeatured', title: 'Show in Homepage Grid?', type: 'boolean', initialValue: false }),
-    defineField({ name: 'displayOrder', title: 'Display Order', type: 'number' }),
+    defineField({ name: 'isFeatured', title: 'Show in Homepage Grid?', type: 'boolean', initialValue: false, group: 'core' }),
+    defineField({ name: 'displayOrder', title: 'Display Order', type: 'number', group: 'core' }),
 
     // --- New Single Page Design Fields ---
 
@@ -52,6 +66,7 @@ export default defineType({
       name: 'hero',
       title: 'Hero Section',
       type: 'object',
+      group: 'heroCta',
       fields: [
         defineField({ name: 'title', title: 'Headline', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
@@ -82,6 +97,7 @@ export default defineType({
       name: 'featuredVideo',
       title: 'Featured Video',
       type: 'object',
+      group: 'mediaPortfolio',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
@@ -120,6 +136,7 @@ export default defineType({
       name: 'benefits',
       title: 'Benefits Section',
       type: 'object',
+      group: 'featuresBenefits',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({
@@ -143,6 +160,7 @@ export default defineType({
       name: 'process',
       title: 'Process Section',
       type: 'object',
+      group: 'processEngagement',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
@@ -166,6 +184,7 @@ export default defineType({
       name: 'portfolio',
       title: 'Portfolio Showcase',
       type: 'object',
+      group: 'mediaPortfolio',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
@@ -193,6 +212,7 @@ export default defineType({
       name: 'metrics',
       title: 'Key Metrics Strip',
       type: 'object',
+      group: 'featuresBenefits',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({
@@ -215,6 +235,7 @@ export default defineType({
       name: 'features',
       title: 'What We Create (Features)',
       type: 'object',
+      group: 'featuresBenefits',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 3 }),
@@ -239,6 +260,7 @@ export default defineType({
       name: 'testimonials',
       title: 'Testimonials Section',
       type: 'object',
+      group: 'socialProof',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({
@@ -263,6 +285,7 @@ export default defineType({
       name: 'engagement',
       title: 'Engagement Model',
       type: 'object',
+      group: 'processEngagement',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
@@ -278,6 +301,7 @@ export default defineType({
       name: 'faqs',
       title: 'FAQs',
       type: 'object',
+      group: 'faqFooter',
       fields: [
         defineField({ name: 'title', title: 'Section Title', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
@@ -301,6 +325,7 @@ export default defineType({
       name: 'bottomCta',
       title: 'Bottom CTA Section',
       type: 'object',
+      group: 'faqFooter',
       fields: [
         defineField({ name: 'title', title: 'Headline', type: 'string' }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
