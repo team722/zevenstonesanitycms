@@ -4,12 +4,18 @@ export default defineType({
   name: 'blogPage',
   title: 'Blog Page',
   type: 'document',
+  groups: [
+    { name: 'heroCta', title: 'Hero & CTA' },
+    { name: 'postComponents', title: 'Global Post Components' },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
     // ─── Blog Listing Hero ────────────────────────────────────────────────────
     defineField({
       name: 'hero',
       title: 'Blog Page Hero',
       type: 'heroSection',
+      group: 'heroCta',
     }),
 
     // ─── Stay Ahead CTA (bottom of listing page) ─────────────────────────────
@@ -17,6 +23,7 @@ export default defineType({
       name: 'stayAheadCta',
       title: 'Stay Ahead CTA',
       type: 'ctaSection',
+      group: 'heroCta',
     }),
 
     // ─── Default CTA Banner (shown on all blog posts unless overridden) ───────
@@ -24,6 +31,7 @@ export default defineType({
       name: 'defaultCtaBanner',
       title: 'Default CTA Banner',
       type: 'object',
+      group: 'postComponents',
       description:
         'Shown at the bottom of every blog post. Individual posts can override this with their own CTA Banner field.',
       fields: [
@@ -56,6 +64,7 @@ export default defineType({
       name: 'newsletterSection',
       title: 'Newsletter Section',
       type: 'object',
+      group: 'postComponents',
       description: 'Displayed at the bottom of every blog post below the related posts grid.',
       fields: [
         defineField({
@@ -87,6 +96,7 @@ export default defineType({
       name: 'seo',
       title: 'SEO Settings',
       type: 'seoFields',
+      group: 'seo',
     }),
   ],
 });
